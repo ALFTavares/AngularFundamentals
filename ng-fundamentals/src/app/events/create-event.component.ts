@@ -1,24 +1,36 @@
-import { Component } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
+import { EventService } from "./shared";
 
 @Component({
-    template: `
-        <h1>New Event</h1>
-        <hr>
-        <div class="col-md-6">
-            <h3>[Create Event Form will go here]</h3>
-            <br>
-            <br>
-            <button type="submit" class="btn btn-primary">Save</button>
-            <button type="button" class="btn btn-default" (click)="cancel()">Cancel</button>
-        </div>
-    `
+    templateUrl: "./create-event.component.html",
+    styles: [`
+    em {
+      float: right;
+      color: #e04c65;
+      paddint-left: 10px
+    }
+
+    .error input { background-color: #e3c3c5; }
+    .error ::-webkit-input-placeholder { color: #999; }
+    .error ::-moz-placeholder { color: #999; }
+    .error :-moz-placeholder { color: #999; }
+    .error :ms-input-placeholder { color: #999; }
+  `]
+
 })
 export class CreateEventComponent {
     isDirty: boolean = true;
+    event: any;
 
-    constructor(private router: Router){
+    constructor(private router: Router, private eventService: EventService){
 
+    }
+
+    saveEvent(formValues): void {
+        this.eventService.saveEvent(formValues);
+        this.isDirty = false;
+        this.router.navigate(['/events']);
     }
 
     cancel() {
