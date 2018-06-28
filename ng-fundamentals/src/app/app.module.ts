@@ -7,59 +7,61 @@ import { ToastrService } from './common/toastr.service';
 import { appRoutes } from './routes';
 import { RouterModule } from '@angular/router';
 import { Error404Component } from './errors/404.component';
-import { AuthService } from "./user/auth.service";
+import { AuthService } from './user/auth.service';
 
 import {
-  EventListComponent,
-  EventThumbnailComponent,
-  EventService,
-  EventDetailsComponent,
-  CreateEventComponent,
-  EventRouteActivator,
-  EventListResolver,
-  CreateSessionComponent,
-  SessionListComponent,
-} from "./events/index"
+    EventListComponent,
+    EventThumbnailComponent,
+    EventService,
+    EventDetailsComponent,
+    CreateEventComponent,
+    EventRouteActivator,
+    EventListResolver,
+    CreateSessionComponent,
+    SessionListComponent, DurationPipe,
+} from './events/index';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CollapsibleWellComponent } from './common/collapsible-well.component';
 
 @NgModule({
-  declarations: [
-    EventsAppComponent,
-    EventListComponent,
-    EventThumbnailComponent,
-    NavBarComponent,
-    EventDetailsComponent,
-    CreateEventComponent,
-    Error404Component,
-    CreateSessionComponent,
-    SessionListComponent,
-    CollapsibleWellComponent
-  ],
-  imports: [
-    BrowserModule,
-    RouterModule.forRoot(appRoutes),
-    FormsModule,
-    ReactiveFormsModule
-  ],
-  providers: [
-    EventService,
-    ToastrService,
-    EventRouteActivator,
-    {
-      provide: 'canDeactivateCreateEvent',
-      useValue: checkDirtyState
-    },
-    EventListResolver,
-    AuthService
-  ],
-  bootstrap: [EventsAppComponent]
+    declarations: [
+        EventsAppComponent,
+        EventListComponent,
+        EventThumbnailComponent,
+        NavBarComponent,
+        EventDetailsComponent,
+        CreateEventComponent,
+        Error404Component,
+        CreateSessionComponent,
+        SessionListComponent,
+        CollapsibleWellComponent,
+        DurationPipe
+    ],
+    imports: [
+        BrowserModule,
+        RouterModule.forRoot(appRoutes),
+        FormsModule,
+        ReactiveFormsModule,
+    ],
+    providers: [
+        EventService,
+        ToastrService,
+        EventRouteActivator,
+        {
+            provide: 'canDeactivateCreateEvent',
+            useValue: checkDirtyState
+        },
+        EventListResolver,
+        AuthService
+    ],
+    bootstrap: [EventsAppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}
 
 export function checkDirtyState(component: CreateEventComponent): boolean {
-  if (component.isDirty) {
-    return window.confirm('You have not saved this event, do you really want to cancel?');
-  }
-  return true;
+    if (component.isDirty) {
+        return window.confirm('You have not saved this event, do you really want to cancel?');
+    }
+    return true;
 }
