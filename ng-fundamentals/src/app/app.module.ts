@@ -3,11 +3,11 @@ import { NgModule } from '@angular/core';
 
 import { EventsAppComponent } from './events-app.component';
 import { NavBarComponent } from './nav/navbar.component';
-import { ToastrService } from './common/toastr.service';
 import { appRoutes } from './routes';
 import { RouterModule } from '@angular/router';
 import { Error404Component } from './errors/404.component';
 import { AuthService } from './user/auth.service';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import {
     EventListComponent,
@@ -20,8 +20,13 @@ import {
     CreateSessionComponent,
     SessionListComponent, DurationPipe,
 } from './events/index';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { CollapsibleWellComponent } from './common/collapsible-well.component';
+import {
+    ToastrService,
+    CollapsibleWellComponent,
+    JQ_TOKEN
+} from './common/index'
+
+let jQuery = window['$'];
 
 @NgModule({
     declarations: [
