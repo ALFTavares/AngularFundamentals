@@ -23,8 +23,10 @@ import {
 import {
     ToastrService,
     CollapsibleWellComponent,
-    JQ_TOKEN
-} from './common/index'
+    JQ_TOKEN,
+    SimpleModalComponent,
+    ModalTriggerDirective
+} from './common/index';
 
 let jQuery = window['$'];
 
@@ -40,7 +42,9 @@ let jQuery = window['$'];
         CreateSessionComponent,
         SessionListComponent,
         CollapsibleWellComponent,
-        DurationPipe
+        DurationPipe,
+        ModalTriggerDirective,
+        SimpleModalComponent
     ],
     imports: [
         BrowserModule,
@@ -52,6 +56,10 @@ let jQuery = window['$'];
         EventService,
         ToastrService,
         EventRouteActivator,
+        {
+            provide: JQ_TOKEN,
+            useValue: jQuery
+        },
         {
             provide: 'canDeactivateCreateEvent',
             useValue: checkDirtyState
