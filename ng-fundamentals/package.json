@@ -4,10 +4,11 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ng serve --proxy-config proxy.conf.json",
     "build": "ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
+    "server": "node node_modules/ngf-server/server.js",
     "e2e": "ng e2e"
   },
   "private": true,
@@ -23,6 +24,7 @@
     "@angular/router": "^5.2.0",
     "core-js": "^2.4.1",
     "ngf-bootstrap": "0.0.5",
+    "ngf-server": "^1.0.2",
     "rxjs": "^5.5.6",
     "toastr": "^2.1.4",
     "zone.js": "^0.8.19"

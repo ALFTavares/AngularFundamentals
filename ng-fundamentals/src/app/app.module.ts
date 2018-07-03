@@ -15,10 +15,12 @@ import {
     EventService,
     EventDetailsComponent,
     CreateEventComponent,
-    EventRouteActivator,
     EventListResolver,
     CreateSessionComponent,
-    SessionListComponent, DurationPipe,
+    SessionListComponent,
+    DurationPipe,
+    UpvoteComponent,
+    VoterService, LocationValidator, EventResolver,
 } from './events/index';
 import {
     ToastrService,
@@ -27,6 +29,7 @@ import {
     SimpleModalComponent,
     ModalTriggerDirective
 } from './common/index';
+import { HttpClientModule } from '@angular/common/http';
 
 let jQuery = window['$'];
 
@@ -44,18 +47,21 @@ let jQuery = window['$'];
         CollapsibleWellComponent,
         DurationPipe,
         ModalTriggerDirective,
-        SimpleModalComponent
+        SimpleModalComponent,
+        UpvoteComponent,
+        LocationValidator
     ],
     imports: [
         BrowserModule,
         RouterModule.forRoot(appRoutes),
         FormsModule,
         ReactiveFormsModule,
+        HttpClientModule
     ],
     providers: [
         EventService,
         ToastrService,
-        EventRouteActivator,
+        VoterService,
         {
             provide: JQ_TOKEN,
             useValue: jQuery
@@ -65,6 +71,7 @@ let jQuery = window['$'];
             useValue: checkDirtyState
         },
         EventListResolver,
+        EventResolver,
         AuthService
     ],
     bootstrap: [EventsAppComponent]
