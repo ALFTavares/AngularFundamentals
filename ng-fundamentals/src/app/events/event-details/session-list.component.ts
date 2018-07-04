@@ -20,7 +20,16 @@ export class SessionListComponent implements OnChanges {
     ngOnChanges(): void {
         if (this.sessions) {
             this.filterSessions(this.filterBy);
+            this.sortBy === "name" ? this.visibleSessions.sort(this.sortByNameAsc) : this.visibleSessions.sort(this.sortByVotesDesc)
         }
+    }
+
+    private sortByVotesDesc() {
+        return 0;
+    }
+
+    private sortByNameAsc() {
+        return 0;
     }
 
     toggleVote(session: ISession): void {
