@@ -39,14 +39,14 @@ describe("SessionListComponent", () => {
                 NO_ERRORS_SCHEMA
             ]
         })
-    }))
+    }));
 
     beforeEach(() => {
         fixture = TestBed.createComponent(SessionListComponent);
         component = fixture.componentInstance;
         debugEl = fixture.debugElement;
         element = fixture.nativeElement;
-    })
+    });
 
     describe("initial display", () => {
         it('should have the correct session title', function () {
@@ -73,4 +73,4 @@ describe("SessionListComponent", () => {
             expect(debugEl.query(By.css("[well-title]")).nativeElement.textContent).toContain("Session 1");
         });
     });
-})
+});
